@@ -24,24 +24,13 @@ void loop() {
     Serial.print("Time_now: ");
     Serial.println(time_now); 
     
-    ret = mympu_update();  //run once need 11ms.
+    ret = mympu_update();  //run once need 9~11ms.
     
     time_now = millis();
     Serial.print("Time_after update: ");
     Serial.println(time_now); 
-    /*
-    switch (ret) {
-	case 0: c++; break;
-	case 1: np++; return;
-	case 2: err_o++; return;
-	case 3: err_c++; return; 
-	default: 
-		Serial.print("READ ERROR!  ");
-		Serial.println(ret);
-		return;
-    }
-    */
-       
+
+    /*   
     //SHOW DATA        
     Serial.print(np); Serial.print("  "); Serial.print(err_c); Serial.print(" "); Serial.print(err_o);
     Serial.print(" Y: "); Serial.print(mympu.ypr[0]);
@@ -50,7 +39,7 @@ void loop() {
     Serial.print("\tgy: "); Serial.print(mympu.gyro[0]);
     Serial.print(" gp: "); Serial.print(mympu.gyro[1]);
     Serial.print(" gr: "); Serial.println(mympu.gyro[2]);
-
+    */
 
 
 }
