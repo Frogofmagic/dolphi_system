@@ -19,6 +19,7 @@ int iMpuUpdateStatus;
 int iSystem_STATUS = 0;
 int iPackagecounter = 0;
 unsigned long time_last;
+unsigned int ucPWM_Counter;
 
 SoftwareSerial mySerial(12, 11); // RX, TX
 
@@ -31,9 +32,12 @@ void setup() {
     iMpuUpdateStatus = mympu_open(200);                //Initial mpu and read status.
     
     pinMode(pinMoto, OUTPUT);                          //Set pinMoto to output.
-    Timer1.initialize(1000);                           // initialize timer1, and set a 1000ms period
-    Timer1.pwm(9, 869);                                // setup pwm on pin 9, 50% duty cycle
-    Timer1.pwm(10, 512);                               // setup pwm on pin 10, 50% duty cycle  
+    pinMode(10, OUTPUT);                               //Set pin10 to output.
+    digitalWrite(10, LOW);                             //Set D10  = Low  
+    ucPWM_Counter = 256;
+    Timer1.initialize(1000);                          // initialize timer1, and set a 1000ms period
+    Timer1.pwm(9, ucPWM_Counter);                      // setup pwm on pin 9, 50% duty cycle
+    //Timer1.pwm(10, 256);                             // setup pwm on pin 10, 50% duty cycle  
     
     if(SYSTEM_DEBUGMODE){                              //Show mpu initial result.
         pinMode(pinDebug, OUTPUT);                     //Set D2(pinDebug) = output
@@ -50,7 +54,9 @@ void setup() {
 int iReadfromBLE[4];
 
 void loop() {
-
+    ucPWM_Counter++;
+    Timer1.pwm(9, ucPWM_Counter);                      // setup pwm on pin 9, 50% duty cycle
+    delay(1);
 }
 
 //========================================================================================================//
