@@ -55,7 +55,7 @@ int iReadfromBLE[4];
 
 void loop() {
     ucPWM_Counter++;
-    Timer1.pwm(9, ucPWM_Counter);                      // setup pwm on pin 9, 50% duty cycle
+    Timer1.pwm(9, 800);                      // setup pwm on pin 9, 50% duty cycle
     delay(1);
 }
 
